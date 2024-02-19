@@ -1,27 +1,28 @@
 // Записать данные в локальное хранилище
-
-//localStorage.setItem('key', 'Hello World!');
+localStorage.setItem('key', 'Hello World!');
 
 // Получить данные из локального хранилища
+let str = localStorage.getItem('key');
 
-//let str = localStorage.getItem('key');
+console.log(str);
 
-localStorage.setItem('num1', '1');
-localStorage.setItem('num2', '2');
-localStorage.setItem('num3', '3');
+/* Напишите скрипт, который сохранит в локальном хранилище три числа под тремя разными ключами.
+Запустите этот скрипт, чтобы данные сохранились.
+Затем напишите скрипт, который получит ваши три числа из локального хранилища и найдет их сумму.
+Запустите второй скрипт и убедитесь в его работоспособности. */
 
+localStorage.setItem('a', 10);
+localStorage.setItem('b', 20);
+localStorage.setItem('c', 30);
 
-
-let num1 = +localStorage.getItem('num1');
-let num2 = +localStorage.getItem('num2');
-let num3 = +localStorage.getItem('num3');
-
-console.log(num1 + num2 + num3);
+let sum = +localStorage.getItem('a') + +localStorage.getItem('b') + +localStorage.getItem('c');
+console.log(sum);
 
 let time = localStorage.getItem('time');
+
 console.log(time);
 
-// метод Date.now, возвращающий текущую метку времени. 
+// метод Date.now(), возвращающий текущую метку времени.
 // количество миллисекунд с 1 января 1970 года
 
 if (time === null) {
@@ -29,39 +30,76 @@ if (time === null) {
     localStorage.setItem('time', now);
 }
 
-// Добавление значения
 localStorage.setItem('key', '1');
 let value1 = localStorage.getItem('key');
+
 console.log(value1);
 
-// презапись значения
 localStorage.setItem('key', '2');
-value1 = localStorage.getItem('key')
+value1 = localStorage.getItem('key');
+
 console.log(value1);
 
-// удаление данных из LS (localStorage)
+// Удалить данные из LS
 localStorage.removeItem('a');
-//------------------------------------------
-let counter = 0;
 
-localStorage.setItem('counter', counter + 1);
+// Сделайте счетчик обновления страницы. Пусть счетчик обнуляется после того, как дойдет до 10.
 
-let count = localStorage.getItem('counter');
+// localStorage.setItem('count', +localStorage.getItem('count') + 1);
+// console.log(+localStorage.getItem('count') + 1);
 
+let count = +localStorage.getItem('count') + 1;
+if (count > 10) {
+    count = 0;
+}
+localStorage.setItem('count', count);
+console.log(`Вы ${count} раз обновили страницу`);
 
+// Количество записей в LS
+console.log(`Количество записей в LS ${localStorage.length}`);
 
+// Получение ключа по номеру
+let key = localStorage.key(0);
+console.log(key);
+let value = localStorage.getItem(key);
+console.log(value);
 
+console.log('Перебор данных в хранилище')
+// Перебор хранилища по индексам
+for (let i = 0; i < localStorage.length; i++) {
+    let key = localStorage.key(i);
+    let value = localStorage.getItem(key);
+    console.log(value);
+}
 
+// Получить массив ключей и значений хранилища
+let keys = Object.keys(localStorage);
+let values = Object.values(localStorage);
 
+console.log(`Массив ключей `, keys);
+console.log(`Массив значений `, values);
 
+// Хранение структур в LS
+let arr = [1, 2, 3, 4, 5];
 
+// JSON.stringify для преобразования объектов в JSON.
+// Метод JSON.stringify(student) берёт объект и преобразует его в строку.
+// Полученная строка json называется JSON - форматированным объектом.
+// Мы можем отправить его по сети или поместить в обычное хранилище данных.
+// JSON.parse() - преобразорвать JSON в структуру данных javaScrypt
 
+console.log(arr);
+localStorage.setItem('arr', JSON.stringify(arr));
 
+arr = localStorage.getItem('arr');
+console.log(`${arr} тип ${typeof arr}`);
 
+arr = JSON.parse(arr);
+console.log(`${arr} тип ${typeof arr}`);
+// проверка на массив, возвращает true или false
+console.log(Array.isArray(arr))
 
-
-
-
+arr.push(1);
 
 
 
